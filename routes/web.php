@@ -26,4 +26,7 @@ Route::get('/profile', 'App\Http\Controllers\Portfolio@profile');
 Route::get('/skills', 'App\Http\Controllers\Portfolio@skills');
 Route::get('/add_skills', 'App\Http\Controllers\Portfolio@add_skills');
 Route::post('/save_skills', 'App\Http\Controllers\Portfolio@saveskill');
+Route::get('/edit_skill/{id}', 'App\Http\Controllers\Portfolio@edit_skill');
+Route::post('/editskill', 'App\Http\Controllers\Portfolio@editskill');
+Route::get('/delete_skill/{id}', 'App\Http\Controllers\Portfolio@delete_skill');
 

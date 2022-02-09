@@ -36,7 +36,8 @@
                             <td>{{$skill->skill_name}}</td>
                             <td>{{$skill->level}}/100</td>
                             <td>
-                                <button class="btn btn-outline-primary" onclick="window.location ='{{url('/edit_profile/'.$skill->id)}}'">Edit</button>
+                                <button class="btn btn-outline-primary" onclick="window.location ='{{url('/edit_skill/'.$skill->id)}}'">Edit</button>
+                                <a class="btn btn-outline-danger" href="{{url('/delete_skill/'.$skill->id)}}" id="delete">Delete</a>
                             </td>
                         </tr>
                         {{{ Form::hidden('', $increment=$increment + 1) }}}

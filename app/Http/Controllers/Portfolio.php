@@ -10,8 +10,9 @@ class Portfolio extends Controller
 {
     public function home()
     {
+        $skills = Skill::get();
         $about = About::get();
-        return view('home')->with('about', $about);
+        return view('home')->with('about', $about)->with('skills', $skills);
     }
 
     /*
@@ -58,7 +59,7 @@ class Portfolio extends Controller
 
         $about->update();
 
-        return redirect('/');
+        return redirect('/profile')->with('status', 'le profil a été modifié avec succés');
     }
 
     /*
@@ -95,5 +96,36 @@ class Portfolio extends Controller
         $skill->save();
 
         return redirect('/add_skills')->with('status', 'la compétence ' . $skill->skill_name . ' a bien été ajoutée');
+    }
+
+    public function edit_skill($id)
+    {
+        $skill = Skill::find($id);
+        return view('admin.editskill')->with('skill', $skill);
+    }
+
+    public function editskill(Request $request)
+    {
+        $this->validate($request, [
+            'skill_name' => 'required',
+            'level' => 'required'
+        ]);
+
+        $skill = Skill::find($request->input('id'));
+        $skill->skill_name = $request->input('skill_name');
+        $skill->level = $request->input('level');
+
+        $skill->update();
+
+        return redirect('/skills')->with('status', 'la compétence ' . $skill->skill_name . ' a été modifié avec succés');
+    }
+
+    public function delete_skill($id)
+    {
+        $skill = Skill::find($id);
+
+        $skill->delete();
+
+        return redirect('/skills')->with('status', 'La compétence' . $skill->skill_name . ' a bien été supprimée');
     }
 }

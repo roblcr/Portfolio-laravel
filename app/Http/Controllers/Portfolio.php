@@ -13,6 +13,13 @@ class Portfolio extends Controller
         return view('home')->with('about', $about);
     }
 
+    public function profile()
+    {
+        $abouts = About::get();
+
+        return view('admin.profile')->with('abouts', $abouts);
+    }
+
     public function edit($id)
     {
         $about = About::find($id);

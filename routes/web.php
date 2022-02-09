@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\Portfolio@home');
+
+
 Route::get('/edit_profile/{id}', 'App\Http\Controllers\Portfolio@edit');
 Route::post('/editprofile', 'App\Http\Controllers\Portfolio@editprofile');
+
+Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard');
+
+Route::get('/profile', 'App\Http\Controllers\Portfolio@profile');
 

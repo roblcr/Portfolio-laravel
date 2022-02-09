@@ -1,7 +1,7 @@
 @extends('layouts.appadmin')
 
 @section('title')
-    Profile
+    Compétences
 @endsection
 {{{ Form::hidden('', $increment = 1) }}}
 
@@ -12,7 +12,7 @@
 
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Profile</h4>
+          <h4 class="card-title">Compétences</h4>
           @if (Session::has('status'))
                          <div class="alert alert-success">
                              {{Session::get('status')}}
@@ -25,30 +25,18 @@
                   <thead>
                     <tr>
                         <th>Order #</th>
-                        <th>Nom</th>
-                        <th>Date d'anniversaire</th>
-                        <th>Site Web</th>
-                        <th>Numéro de telephone</th>
-                        <th>Ville</th>
-                        <th>Age</th>
-                        <th>Niveau d'études</th>
-                        <th>Email</th>
+                        <th>Nom de la compétence</th>
+                        <th>Niveau de la compétence</th>
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($abouts as $about)
+                      @foreach ($skills as $skill)
                         <tr>
                             <td>{{$increment}}</td>
-                            <td>{{$about->name}}</td>
-                            <td>{{$about->birthday}}</td>
-                            <td>{{$about->website}}</td>
-                            <td>{{$about->phone}}</td>
-                            <td>{{$about->city}}</td>
-                            <td>{{$about->age}}</td>
-                            <td>{{$about->degree}}</td>
-                            <td>{{$about->email}}</td>
+                            <td>{{$skill->skill_name}}</td>
+                            <td>{{$skill->level}}/100</td>
                             <td>
-                                <button class="btn btn-outline-primary" onclick="window.location ='{{url('/edit_profile/'.$about->id)}}'">Edit</button>
+                                <button class="btn btn-outline-primary" onclick="window.location ='{{url('/edit_profile/'.$skill->id)}}'">Edit</button>
                             </td>
                         </tr>
                         {{{ Form::hidden('', $increment=$increment + 1) }}}

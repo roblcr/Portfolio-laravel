@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class Portfolio extends Controller
@@ -13,6 +14,11 @@ class Portfolio extends Controller
         return view('home')->with('about', $about);
     }
 
+    /*
+    START PROFILE
+    */
+
+
     public function profile()
     {
         $abouts = About::get();
@@ -20,7 +26,8 @@ class Portfolio extends Controller
         return view('admin.profile')->with('abouts', $abouts);
     }
 
-    public function edit($id)
+
+    public function edit_profile($id)
     {
         $about = About::find($id);
         return view('admin.editprofile')->with('about', $about);
@@ -52,5 +59,41 @@ class Portfolio extends Controller
         $about->update();
 
         return redirect('/');
+    }
+
+    /*
+    END PROFILE
+    */
+
+    /*
+    START SKILLS
+    */
+
+    public function skills()
+    {
+        $skills = Skill::get();
+
+        return view('admin.skills')->with('skills', $skills);
+    }
+
+    public function add_skills()
+    {
+        return view('admin.addskills');
+    }
+
+    public function saveskill(Request $request)
+    {
+        $this->validate($request, [
+            'skill_name' => 'required',
+            'level' => 'required'
+        ]);
+
+        $skill = new Skill();
+        $skill->skill_name = $request->input('skill_name');
+        $skill->level = $request->input('level');
+
+        $skill->save();
+
+        return redirect('/add_skills')->with('status', 'la compétence ' . $skill->skill_name . ' a bien été ajoutée');
     }
 }

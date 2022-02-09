@@ -14,7 +14,7 @@
         </a>
         <div class="collapse" id="form-elements">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"><a class="nav-link" href="{{URL::to('/ajoutercategorie')}}">Ajouter catégorie</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{URL::to('/add_skills')}}">Ajouter compétences</a></li>
             <li class="nav-item"><a class="nav-link" href="{{URL::to('/ajouterproduit')}}">Ajouter produit</a></li>
             <li class="nav-item"><a class="nav-link" href="{{URL::to('/ajouterslider')}}">Ajouter slider</a></li>
           </ul>
@@ -28,8 +28,8 @@
         </a>
         <div class="collapse" id="tables">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{URL::to('/categories')}}">Catégories</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{URL::to('/products')}}">Produits</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{URL::to('/profile')}}">Profile</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{URL::to('/skills')}}">Compétences</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{URL::to('/sliders')}}">Sliders</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{URL::to('/order')}}">Commandes</a></li>
           </ul>

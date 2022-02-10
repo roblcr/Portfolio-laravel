@@ -1,16 +1,10 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.appadmin')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+@section('title')
+    Editer la compétence
+@endsection
 
-    <title>Modifier la compétence</title>
-  </head>
-  <body>
+@section('contenu')
     <div class="row grid-margin">
         <div class="col-lg-12">
           <div class="card">
@@ -39,26 +33,41 @@
                       {!! Form::text('skill_name', $skill->skill_name, ['class' => 'form-control', 'id' => 'cname']) !!}
                   </div>
                   <div class="form-group">
-                    {!! Form::label('', 'Niveau de la compétence', ['for' => 'cname']) !!}
-                    {!! Form::number('level', $skill->level, ['class' => 'form-control', 'id' => 'cname']) !!}
+                    {!! Form::label('', 'Niveau de compétence', ['for' => 'cname']) !!}
+                    {!! Form::text('level', $skill->level, ['class' => 'form-control', 'id' => 'cname']) !!}
                   </div>
+
+
+                  {{-- <div class="form-group">
+                    <label for="cemail">E-Mail (required)</label>
+                    <input id="cemail" class="form-control" type="email" name="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="curl">URL (optional)</label>
+                    <input id="curl" class="form-control" type="url" name="url">
+                  </div>
+                  <div class="form-group">
+                    <label for="ccomment">Your comment (required)</label>
+                    <textarea id="ccomment" class="form-control" name="comment" required></textarea>
+                  </div> --}}
+
                   {!! Form::submit('Modifier', ['class' => 'btn btn-primary']) !!}
                {!! Form::close() !!}
             </div>
           </div>
         </div>
       </div>
+      @endsection
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
+   @section('scripts')
+{{-- <script src="backend/js/form-validation.js"></script>
+<script src="backend/js/bt-maxLength.js"></script> --}}
+@endsection
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+
+
+
+
+

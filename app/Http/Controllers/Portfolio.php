@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Models\Skill;
 use App\Models\Education;
+use App\Models\ProfessionalExperience;
 use Illuminate\Http\Request;
 
 class Portfolio extends Controller
@@ -207,5 +208,50 @@ class Portfolio extends Controller
         $education->delete();
 
         return redirect('/education')->with('status', 'La formation ' . $education->title . ' a bien été supprimée');
+    }
+
+     /*
+    END EDUCATION
+    */
+
+    /*
+    START PROFESSIONAL EXPERIENCE
+    */
+
+    public function professional_experience()
+    {
+        $professionalExps = ProfessionalExperience::get();
+
+        return view('admin.professionalexperience')->with('professionalExps', $professionalExps);
+    }
+
+    public function add_professionalexp()
+    {
+        return view('admin.addprofessionalexp');
+    }
+
+    public function saveprofessionalexp(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'place' => 'required',
+            'resume_one' => 'required'
+        ]);
+
+        $professionalexp = new ProfessionalExperience();
+        $professionalexp->title = $request->input('title');
+        $professionalexp->date_start = $request->input('date_start');
+        $professionalexp->date_end = $request->input('date_end');
+        $professionalexp->place = $request->input('place');
+        $professionalexp->resume_one = $request->input('resume_one');
+        $professionalexp->resume_one = $request->input('resume_two');
+        $professionalexp->resume_one = $request->input('resume_three');
+        $professionalexp->resume_one = $request->input('resume_four');
+
+        $professionalexp->save();
+
+        return redirect('/add_professionalexp')->with('status', 'l\'expérience professionnel ' . $professionalexp->title . ' a bien été ajoutée');
     }
 }

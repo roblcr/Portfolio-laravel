@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Skill;
+use App\Models\Education;
 use Illuminate\Http\Request;
 
 class Portfolio extends Controller
@@ -104,7 +105,7 @@ class Portfolio extends Controller
         return view('admin.editskill')->with('skill', $skill);
     }
 
-    public function editskill(Request $request)
+    public function editskills(Request $request)
     {
         $this->validate($request, [
             'skill_name' => 'required',
@@ -127,5 +128,84 @@ class Portfolio extends Controller
         $skill->delete();
 
         return redirect('/skills')->with('status', 'La compétence' . $skill->skill_name . ' a bien été supprimée');
+    }
+
+    /*
+    END SKILL
+    */
+
+    /*
+    START EDUCATION
+    */
+
+    public function education()
+    {
+        $educations = Education::get();
+
+        return view('admin.education')->with('educations', $educations);
+    }
+
+    public function add_education()
+    {
+        return view('admin.addeducation');
+    }
+
+    public function saveducation(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'place' => 'required',
+            'resume' => 'required'
+        ]);
+
+        $education = new Education();
+        $education->title = $request->input('title');
+        $education->date_start = $request->input('date_start');
+        $education->date_end = $request->input('date_end');
+        $education->place = $request->input('place');
+        $education->resume = $request->input('resume');
+
+        $education->save();
+
+        return redirect('/add_education')->with('status', 'la formation ' . $education->title . ' a bien été ajoutée');
+    }
+
+    public function edit_education($id)
+    {
+        $education = Education::find($id);
+        return view('admin.editeducation')->with('education', $education);
+    }
+
+    public function editeducation(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'place' => 'required',
+            'resume' => 'required'
+        ]);
+
+        $education = Education::find($request->input('id'));
+        $education->title = $request->input('title');
+        $education->date_start = $request->input('date_start');
+        $education->date_end = $request->input('date_end');
+        $education->place = $request->input('place');
+        $education->resume = $request->input('resume');
+
+        $education->update();
+
+        return redirect('/education')->with('status', 'la formation ' . $education->title . ' a été modifié avec succés');
+    }
+
+    public function delete_education($id)
+    {
+        $education = Education::find($id);
+
+        $education->delete();
+
+        return redirect('/education')->with('status', 'La formation ' . $education->title . ' a bien été supprimée');
     }
 }

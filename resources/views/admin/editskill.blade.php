@@ -31,7 +31,7 @@
                         </ul>
                     </div>
                 @endif
-                  {!! Form::open(['action' => 'App\Http\Controllers\Portfolio@editskill', 'method' => 'POST', 'class' => 'cmxform', 'id' => 'commentForm']) !!}
+                  {!! Form::open(['action' => 'App\Http\Controllers\Portfolio@editskills', 'method' => 'POST', 'class' => 'cmxform', 'id' => 'commentForm']) !!}
                   {{ csrf_field() }}
                   <div class="form-group">
                       {!! Form::hidden('id', $skill->id)!!}

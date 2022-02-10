@@ -1,7 +1,7 @@
 @extends('layouts.appadmin')
 
 @section('title')
-    Editer le profil
+    Editer la formation
 @endsection
 
 @section('contenu')
@@ -9,7 +9,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Modifier le profil</h4>
+              <h4 class="card-title">Modifier la formation</h4>
 
               @if (Session::has('status'))
                      <div class="alert alert-success">
@@ -25,41 +25,30 @@
                         </ul>
                     </div>
                 @endif
-                  {!! Form::open(['action' => 'App\Http\Controllers\Portfolio@editprofile', 'method' => 'POST', 'class' => 'cmxform', 'id' => 'commentForm']) !!}
+                  {!! Form::open(['action' => 'App\Http\Controllers\Portfolio@editeducation', 'method' => 'POST', 'class' => 'cmxform', 'id' => 'commentForm']) !!}
                   {{ csrf_field() }}
                   <div class="form-group">
-                      {!! Form::hidden('id', $about->id)!!}
-                      {!! Form::label('', 'Nom', ['for' => 'cname']) !!}
-                      {!! Form::text('name', $about->name, ['class' => 'form-control', 'id' => 'cname']) !!}
+                      {!! Form::hidden('id', $education->id)!!}
+                      {!! Form::label('', 'Nom de la formation', ['for' => 'cname']) !!}
+                      {!! Form::text('title', $education->title, ['class' => 'form-control', 'id' => 'cname']) !!}
                   </div>
                   <div class="form-group">
-                    {!! Form::label('', 'Date de naissance', ['for' => 'cname']) !!}
-                    {!! Form::text('birthday', $about->birthday, ['class' => 'form-control', 'id' => 'cname']) !!}
+                    {!! Form::label('', 'Début de la formation', ['for' => 'cname']) !!}
+                    {!! Form::date('date_start', $education->date_start, ['class' => 'form-control', 'id' => 'cname']) !!}
                   </div>
                   <div class="form-group">
-                    {!! Form::label('', 'Site', ['for' => 'cname']) !!}
-                    {!! Form::text('website', $about->website, ['class' => 'form-control', 'id' => 'cname']) !!}
+                    {!! Form::label('', 'Fin de la formation', ['for' => 'cname']) !!}
+                    {!! Form::date('date_end', $education->date_end, ['class' => 'form-control', 'id' => 'cname']) !!}
                   </div>
                   <div class="form-group">
-                    {!! Form::label('', 'Numero de telephone', ['for' => 'cname']) !!}
-                    {!! Form::text('phone', $about->phone, ['class' => 'form-control', 'id' => 'cname']) !!}
+                    {!! Form::label('', 'Lieu de la formation', ['for' => 'cname']) !!}
+                    {!! Form::text('place', $education->place, ['class' => 'form-control', 'id' => 'cname']) !!}
                   </div>
                   <div class="form-group">
-                    {!! Form::label('', 'Ville', ['for' => 'cname']) !!}
-                    {!! Form::text('city', $about->city, ['class' => 'form-control', 'id' => 'cname']) !!}
+                    {!! Form::label('', 'Resumé', ['for' => 'cname']) !!}
+                    {!! Form::text('resume', $education->resume, ['class' => 'form-control', 'id' => 'cname']) !!}
                   </div>
-                  <div class="form-group">
-                    {!! Form::label('', 'Age', ['for' => 'cname']) !!}
-                    {!! Form::number('age', $about->age, ['class' => 'form-control', 'id' => 'cname']) !!}
-                  </div>
-                  <div class="form-group">
-                    {!! Form::label('', 'Niveau d\'études', ['for' => 'cname']) !!}
-                    {!! Form::text('degree', $about->degree, ['class' => 'form-control', 'id' => 'cname']) !!}
-                  </div>
-                  <div class="form-group">
-                    {!! Form::label('', 'Email', ['for' => 'cname']) !!}
-                    {!! Form::text('email', $about->email, ['class' => 'form-control', 'id' => 'cname']) !!}
-                  </div>
+
 
                   {{-- <div class="form-group">
                     <label for="cemail">E-Mail (required)</label>

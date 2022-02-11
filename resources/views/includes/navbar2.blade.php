@@ -17,6 +17,7 @@
             <li class="nav-item"><a class="nav-link" href="{{URL::to('/add_skills')}}">Ajouter compétences</a></li>
             <li class="nav-item"><a class="nav-link" href="{{URL::to('/add_education')}}">Ajouter formation</a></li>
             <li class="nav-item"><a class="nav-link" href="{{URL::to('/add_professionalexp')}}">Ajouter une expérience professionnelle</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{URL::to('/add_portfolio')}}">Ajouter une nouvelle application</a></li>
           </ul>
         </div>
       </li>
@@ -32,6 +33,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{URL::to('/skills')}}">Compétences</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{URL::to('/education')}}">Education</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{URL::to('/professional_exp')}}">Experience professionnel</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{URL::to('/portfolio')}}">Portfolio</a></li>
           </ul>
         </div>
       </li>

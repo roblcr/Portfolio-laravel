@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Models\Skill;
 use App\Models\Education;
+use App\Models\Portfolio as ModelsPortfolio;
 use App\Models\ProfessionalExperience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class Portfolio extends Controller
 {
@@ -294,4 +296,115 @@ class Portfolio extends Controller
 
         return redirect('/education')->with('status', 'L\'expérience professionnelle ' . $professionalExp->title . ' a bien été supprimée');
     }
+
+     /*
+    END PROFESSIONAL EXPERIENCE
+    */
+
+    /*
+    START PORTFOLIO
+    */
+
+    public function portfolio()
+    {
+        $portfolios = ModelsPortfolio::get();
+
+        return view('admin.portfolio')->with('portfolios', $portfolios);
+    }
+
+    public function add_portfolio()
+    {
+        return view('admin.addportfolio');
+    }
+
+    public function saveportfolio(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'subtitle' => 'required',
+            'link' => 'required',
+            'image' => 'image|nullable|max:1999'
+        ]);
+
+        if($request->hasFile('image')){
+            $fileNameWithExtension = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $fileName.'_'. time() .'.'. $extension;
+
+            // upload de l'image
+
+            $path = $request->file('image')->storeAs('public/app_images', $fileNameToStore);
+
+        }
+        else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+        $portfolio = new ModelsPortfolio();
+        $portfolio->title = $request->input('title');
+        $portfolio->subtitle = $request->input('subtitle');
+        $portfolio->link = $request->input('link');
+        $portfolio->image = $fileNameToStore;
+
+        $portfolio->save();
+
+        return redirect('/add_portfolio')->with('status', 'L\'application ' . $portfolio->title . ' a bien été ajoutée');
+    }
+
+    public function edit_portfolio($id)
+    {
+        $portfolio = ModelsPortfolio::find($id);
+        return view('admin.editportfolio')->with('portfolio', $portfolio);
+    }
+
+    public function editportfolio(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'subtitle' => 'required',
+            'link' => 'required',
+            'image' => 'image|nullable|max:1999']);
+
+
+            $portfolio = ModelsPortfolio::find($request->input('id'));
+            $portfolio->title = $request->input('title');
+            $portfolio->subtitle = $request->input('subtitle');
+            $portfolio->link = $request->input('link');
+
+            if($request->hasFile('image')){
+                $fileNameWithExtension = $request->file('image')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+                $extension = $request->file('image')->getClientOriginalExtension();
+                $fileNameToStore = $fileName.'_'. time() .'.'. $extension;
+
+                // upload de l'image
+
+                $path = $request->file('image')->storeAs('public/app_images', $fileNameToStore);
+
+                if($portfolio->image != 'noimage.jpg'){
+                    Storage::delete('public/app_images/' .$portfolio->image);
+                }
+
+                $portfolio->image = $fileNameToStore;
+            }
+
+            $portfolio->update();
+
+            return redirect('/portfolio')->with('status', 'le portfolio ' . $portfolio->title . ' a été modifié avec succés');
+    }
+
+    public function delete_portfolio($id)
+    {
+        $portfolio = ModelsPortfolio::find($id);
+
+        if($portfolio->image != 'noimage.jpg'){
+            Storage::delete('public/app_images/' .$portfolio->image);
+        }
+
+        $portfolio->delete();
+
+        return redirect('/portfolio')->with('status', 'Le portfolio '.$portfolio->title.' a bien été suprimée');
+    }
+
 }

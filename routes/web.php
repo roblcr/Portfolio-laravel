@@ -44,3 +44,10 @@ Route::get('/edit_professionalexp/{id}', 'App\Http\Controllers\Portfolio@edit_pr
 Route::post('/editprofessionalexp', 'App\Http\Controllers\Portfolio@editprofessionalexp');
 Route::get('/delete_professionalexp/{id}', 'App\Http\Controllers\Portfolio@delete_professionalexp');
 
+Route::get('/portfolio', 'App\Http\Controllers\Portfolio@portfolio');
+Route::get('/add_portfolio', 'App\Http\Controllers\Portfolio@add_portfolio');
+Route::post('/save_portfolio', 'App\Http\Controllers\Portfolio@saveportfolio');
+Route::get('/edit_portfolio/{id}', 'App\Http\Controllers\Portfolio@edit_portfolio');
+Route::post('/editportfolio', 'App\Http\Controllers\Portfolio@editportfolio');
+Route::get('/delete_portfolio/{id}', 'App\Http\Controllers\Portfolio@delete_portfolio');
+

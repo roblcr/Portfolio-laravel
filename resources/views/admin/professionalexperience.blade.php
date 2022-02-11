@@ -45,8 +45,8 @@
                                 <li>{{$professionalExp->resume_four}}</li>
                             </td>
                             <td>
-                                <button class="btn btn-outline-primary" onclick="window.location ='{{url('/edit_education/'.$professionalExp->id)}}'">Edit</button>
-                                <a class="btn btn-outline-danger" href="{{url('/delete_education/'.$professionalExp->id)}}" id="delete">Delete</a>
+                                <button class="btn btn-outline-primary" onclick="window.location ='{{url('/edit_professionalexp/'.$professionalExp->id)}}'">Edit</button>
+                                <a class="btn btn-outline-danger" href="{{url('/delete_professionalexp/'.$professionalExp->id)}}" id="delete">Delete</a>
                             </td>
                         </tr>
                         {{{ Form::hidden('', $increment=$increment + 1) }}}

@@ -246,12 +246,52 @@ class Portfolio extends Controller
         $professionalexp->date_end = $request->input('date_end');
         $professionalexp->place = $request->input('place');
         $professionalexp->resume_one = $request->input('resume_one');
-        $professionalexp->resume_one = $request->input('resume_two');
-        $professionalexp->resume_one = $request->input('resume_three');
-        $professionalexp->resume_one = $request->input('resume_four');
+        $professionalexp->resume_two = $request->input('resume_two');
+        $professionalexp->resume_three = $request->input('resume_three');
+        $professionalexp->resume_four = $request->input('resume_four');
 
         $professionalexp->save();
 
         return redirect('/add_professionalexp')->with('status', 'l\'expérience professionnel ' . $professionalexp->title . ' a bien été ajoutée');
+    }
+
+    public function edit_professionalexp($id)
+    {
+        $professionalExp = ProfessionalExperience::find($id);
+        return view('admin.editprofessionalexp')->with('professionalExp', $professionalExp);
+    }
+
+    public function editprofessionalexp(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'place' => 'required',
+            'resume_one' => 'required'
+        ]);
+
+        $professionalExp = ProfessionalExperience::find($request->input('id'));
+        $professionalExp->title = $request->input('title');
+        $professionalExp->date_start = $request->input('date_start');
+        $professionalExp->date_end = $request->input('date_end');
+        $professionalExp->place = $request->input('place');
+        $professionalExp->resume = $request->input('resume_one');
+        $professionalExp->resume = $request->input('resume_two');
+        $professionalExp->resume = $request->input('resume_three');
+        $professionalExp->resume = $request->input('resume_four');
+
+        $professionalExp->update();
+
+        return redirect('/professionalexperience')->with('status', 'l\'expérience professionnelle ' . $professionalExp->title . ' a été modifié avec succés');
+    }
+
+    public function delete_professionalexp($id)
+    {
+        $professionalExp = ProfessionalExperience::find($id);
+
+        $professionalExp->delete();
+
+        return redirect('/education')->with('status', 'L\'expérience professionnelle ' . $professionalExp->title . ' a bien été supprimée');
     }
 }

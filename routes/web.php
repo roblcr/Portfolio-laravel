@@ -34,10 +34,13 @@ Route::get('/education', 'App\Http\Controllers\Portfolio@education');
 Route::get('/add_education', 'App\Http\Controllers\Portfolio@add_education');
 Route::post('/save_education', 'App\Http\Controllers\Portfolio@saveducation');
 Route::get('/edit_education/{id}', 'App\Http\Controllers\Portfolio@edit_education');
-Route::post('/editskill', 'App\Http\Controllers\Portfolio@editeducation');
+Route::post('/editeducation', 'App\Http\Controllers\Portfolio@editeducation');
 Route::get('/delete_education/{id}', 'App\Http\Controllers\Portfolio@delete_education');
 
 Route::get('/professional_exp', 'App\Http\Controllers\Portfolio@professional_experience');
 Route::get('/add_professionalexp', 'App\Http\Controllers\Portfolio@add_professionalexp');
 Route::post('/save_professionalexp', 'App\Http\Controllers\Portfolio@saveprofessionalexp');
+Route::get('/edit_professionalexp/{id}', 'App\Http\Controllers\Portfolio@edit_professionalexp');
+Route::post('/editprofessionalexp', 'App\Http\Controllers\Portfolio@editprofessionalexp');
+Route::get('/delete_professionalexp/{id}', 'App\Http\Controllers\Portfolio@delete_professionalexp');
 

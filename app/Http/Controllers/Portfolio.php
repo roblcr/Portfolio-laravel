@@ -16,7 +16,10 @@ class Portfolio extends Controller
     {
         $skills = Skill::get();
         $about = About::get();
-        return view('home')->with('about', $about)->with('skills', $skills);
+        $educations = Education::get();
+        $professionalExps = ProfessionalExperience::get();
+        $portfolios = ModelsPortfolio::get();
+        return view('home')->with('about', $about)->with('skills', $skills)->with('educations', $educations)->with('professionalExps', $professionalExps)->with('portfolios', $portfolios);
     }
 
     /*
@@ -278,14 +281,14 @@ class Portfolio extends Controller
         $professionalExp->date_start = $request->input('date_start');
         $professionalExp->date_end = $request->input('date_end');
         $professionalExp->place = $request->input('place');
-        $professionalExp->resume = $request->input('resume_one');
-        $professionalExp->resume = $request->input('resume_two');
-        $professionalExp->resume = $request->input('resume_three');
-        $professionalExp->resume = $request->input('resume_four');
+        $professionalExp->resume_one = $request->input('resume_one');
+        $professionalExp->resume_two = $request->input('resume_two');
+        $professionalExp->resume_three = $request->input('resume_three');
+        $professionalExp->resume_four = $request->input('resume_four');
 
         $professionalExp->update();
 
-        return redirect('/professionalexperience')->with('status', 'l\'expérience professionnelle ' . $professionalExp->title . ' a été modifié avec succés');
+        return redirect('/professional_exp')->with('status', 'l\'expérience professionnelle ' . $professionalExp->title . ' a été modifié avec succés');
     }
 
     public function delete_professionalexp($id)

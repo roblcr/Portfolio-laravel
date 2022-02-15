@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('title')
     Portfolio - Lecullier Robin
@@ -48,7 +48,7 @@
     <!-- End Testimonials Section -->
 
     <!-- ======= Contact Section ======= -->
-            @include('includes.contact')
+
     <!-- End Contact Section -->
 
   </main><!-- End #main -->

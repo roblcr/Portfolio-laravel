@@ -29,6 +29,9 @@ class Portfolio extends Controller
 
     public function profile()
     {
+
+        $this->middleware('auth');
+
         $abouts = About::get();
 
         return view('admin.profile')->with('abouts', $abouts);
